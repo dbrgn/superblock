@@ -39,11 +39,18 @@ def block_printer(filename, offset, block_count):
 
 if __name__ == '__main__':
 
-    if len(sys.argv) < 2:
-        print 'Usage: superblock.py <filename>'
+    if len(sys.argv) < 3 or sys.argv[1] not in ['dump', 'analyze']:
+        print 'Usage: superblock.py [dump|analyze] <filename>'
         sys.exit(1)
 
-    filename = sys.argv[1]
-    print '\nPrinting superblock (bytes 1024-1535) of file %s.\n' % filename
-    print ' ' * 5 + 'HEX'.center(35) + '  ' + 'ASCII'.center(16)
-    block_printer(filename, 2, 1)
+    action = sys.argv[1]
+    filename = sys.argv[2]
+
+    if action == 'dump':
+        print '\nPrinting superblock (bytes 1024-1535) of file %s.\n' % filename
+        print ' ' * 5 + 'HEX'.center(35) + '  ' + 'ASCII'.center(16)
+        block_printer(filename, 2, 1)
+    elif action == 'analyze':
+        print '\nAnalyzing superblock (bytes 1024-1535) of file %s.\n' % filename
+        print 'TODO'
+
