@@ -26,9 +26,9 @@ def dump(filename):
     with open(filename, 'rb') as f:
         f.seek(2 * BLOCKSIZE)
         for i in xrange(BLOCKSIZE / 16):
-            word = f.read(4), f.read(4), f.read(4), f.read(4)
-            hex_string = ' '.join(map(hexlify, word))
-            ascii_string = ''.join(map(nonprintable_replace, ''.join(word)))
+            row = f.read(4), f.read(4), f.read(4), f.read(4)
+            hex_string = ' '.join(map(hexlify, row))
+            ascii_string = ''.join(map(nonprintable_replace, ''.join(row)))
             print '{0:2}:  {1}  {2}'.format(i + 1, hex_string, ascii_string)
 
 
@@ -69,6 +69,8 @@ def analyze(filename):
     def map_bitmap(value, mapping):
         """Map a bitmap to the corresponding human readable strings."""
         return ' '.join([t[1] for t in mapping if value & t[0]])
+
+    # Process superblock
 
     with open(filename, 'rb') as f:
         f.seek(2 * BLOCKSIZE)
