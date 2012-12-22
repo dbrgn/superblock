@@ -92,14 +92,14 @@ Analyze
     Number inodes per group: 64
     Number of block groups: 1
     Time of last mount: 1356184194 (2012-12-22 14:49:54)
-    Time of last write: 2012-12-22 14:59:32
+    Time of last write: 1356184772 (2012-12-22 14:59:32)
     Mount operations counter: 2
     Number of mount operations before check: 65535
     Magic signature: 0XEF53
     Status flag: 1
     Behavior when detecting errors: 1
     Minor revision level: 0
-    Time of last check: 2012-12-22 11:29:42
+    Time of last check: 1356172182 (2012-12-22 11:29:42)
     Time between checks: 0
     OS Filesystem created: 0
     Revision level: 1
@@ -114,6 +114,6 @@ Analyze
     128-bit filesystem identifier: dc0cb51b-2ab5-4967-8e60-249287974d10
     Volume name: experim_ext2
     Path of last mount point: /home/danilo/Projects/superblock/mnt
-    Compression: 0X1000000000000
+    Compression: 0X0
     Number of blocks to preallocate: 0
     Number of blocks to preallocate for directories: 0

@@ -92,12 +92,13 @@ def analyze(filename):
         print 'Number fragments per group: {0:d}'.format(lsb2int(f.read(4)))
         inodes_per_group = lsb2int(f.read(4))
         print 'Number inodes per group: {0:d}'.format(inodes_per_group)
-        last_mnt = lsb2int(f.read(4))
         print 'Number of block groups: {0:d}'.format(inodes_total / inodes_per_group)
-        print 'Time of last mount: {0:d} ({1:%Y-%m-%d %H:%M:%S})'.format(last_mnt, timestamp(last_mnt))
+        mtime = lsb2int(f.read(4))
+        print 'Time of last mount: {0:d} ({1:%Y-%m-%d %H:%M:%S})'.format(mtime, timestamp(mtime))
 
         # Bytes 48-63
-        print 'Time of last write: {0:%Y-%m-%d %H:%M:%S}'.format(timestamp(lsb2int(f.read(4))))
+        wtime = lsb2int(f.read(4))
+        print 'Time of last write: {0:d} ({1:%Y-%m-%d %H:%M:%S})'.format(wtime, timestamp(wtime))
         print 'Mount operations counter: {0:d}'.format(lsb2int(f.read(2)))
         print 'Number of mount operations before check: {0:d}'.format(lsb2int(f.read(2)))
         print 'Magic signature: {0:#X}'.format(lsb2int(f.read(2)))
@@ -106,8 +107,10 @@ def analyze(filename):
         print 'Minor revision level: {0:d}'.format(lsb2int(f.read(2)))
 
         # Bytes 64-79
-        print 'Time of last check: {0:%Y-%m-%d %H:%M:%S}'.format(timestamp(lsb2int(f.read(4))))
-        print 'Time between checks: {0:d}'.format(lsb2int(f.read(4)))
+        lastcheck = lsb2int(f.read(4))
+        print 'Time of last check: {0} ({1:%Y-%m-%d %H:%M:%S})'.format(lastcheck, timestamp(lastcheck))
+        checkinterval = lsb2int(f.read(4))
+        print 'Time between checks: {0:d}'.format(checkinterval)
         print 'OS Filesystem created: {0:d}'.format(lsb2int(f.read(4)))
         print 'Revision level: {0:d}'.format(lsb2int(f.read(4)))
 
