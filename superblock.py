@@ -21,20 +21,14 @@ def nonprintable_replace(char):
     return char
 
 
-def block_printer(filename, offset, block_count):
-
+def dump(filename):
     with open(filename, 'rb') as f:
-        f.seek(offset * BLOCKSIZE)
-
-        # Loop over blocks
-        for i in xrange(block_count):
-
-            # Loop over bytes
-            for j in xrange(BLOCKSIZE / 16):
-                word = f.read(4), f.read(4), f.read(4), f.read(4)
-                hex_string = ' '.join(map(hexlify, word))
-                ascii_string = ''.join(map(nonprintable_replace, ''.join(word)))
-                print '{0:2}:  {1}  {2}'.format(j + 1, hex_string, ascii_string)
+        f.seek(2 * BLOCKSIZE)
+        for i in xrange(BLOCKSIZE / 16):
+            word = f.read(4), f.read(4), f.read(4), f.read(4)
+            hex_string = ' '.join(map(hexlify, word))
+            ascii_string = ''.join(map(nonprintable_replace, ''.join(word)))
+            print '{0:2}:  {1}  {2}'.format(i + 1, hex_string, ascii_string)
 
 
 if __name__ == '__main__':
@@ -49,7 +43,7 @@ if __name__ == '__main__':
     if action == 'dump':
         print '\nPrinting superblock (bytes 1024-1535) of file %s.\n' % filename
         print ' ' * 5 + 'HEX'.center(35) + '  ' + 'ASCII'.center(16)
-        block_printer(filename, 2, 1)
+        dump(filename)
     elif action == 'analyze':
         print '\nAnalyzing superblock (bytes 1024-1535) of file %s.\n' % filename
         print 'TODO'
