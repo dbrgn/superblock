@@ -69,7 +69,8 @@ def analyze(filename):
         f.seek(2 * BLOCKSIZE)
 
         # Bytes 0-15
-        print 'Total number of inodes: {0:d}'.format(lsb2int(f.read(4)))
+        inodes_total = lsb2int(f.read(4))
+        print 'Total number of inodes: {0:d}'.format(inodes_total)
         print 'Filesystem size in blocks: {0:d}'.format(lsb2int(f.read(4)))
         print 'Number of reserved blocks: {0:d}'.format(lsb2int(f.read(4)))
         print 'Free blocks counter: {0:d}'.format(lsb2int(f.read(4)))
@@ -84,9 +85,11 @@ def analyze(filename):
         # Bytes 32-47
         print 'Number blocks per group: {0:d}'.format(lsb2int(f.read(4)))
         print 'Number fragments per group: {0:d}'.format(lsb2int(f.read(4)))
-        print 'Number inodes per group: {0:d}'.format(lsb2int(f.read(4)))
-        val = lsb2int(f.read(4))
-        print 'Time of last mount: {0:d} ({1:%Y-%m-%d %H:%M:%S})'.format(val, timestamp(val))
+        inodes_per_group = lsb2int(f.read(4))
+        print 'Number inodes per group: {0:d}'.format(inodes_per_group)
+        last_mnt = lsb2int(f.read(4))
+        print 'Number of block groups: {0:d}'.format(inodes_total / inodes_per_group)
+        print 'Time of last mount: {0:d} ({1:%Y-%m-%d %H:%M:%S})'.format(last_mnt, timestamp(last_mnt))
 
         # Bytes 48-63
         print 'Time of last write: {0:%Y-%m-%d %H:%M:%S}'.format(timestamp(lsb2int(f.read(4))))
