@@ -9,13 +9,17 @@ Such a file can be created as follows::
     $ dd count=1024 if=/dev/zero of=filesystem.ext2
     $ sudo mkfs.ext2 filesystem.ext2
 
+It can be mounted with ::
+
+    $ sudo mount -t ext2 -o loop filesystem.ext2 /mnt/mountpoint
+
 
 Usage
 =====
 
 ::
 
-    $ ./superblock.py filesystem.ext2
+    $ ./superblock.py [dump|analyze] <filename>
 
 
 License
