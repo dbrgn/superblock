@@ -65,6 +65,10 @@ def analyze(filename):
     def timestamp(seconds):
         return datetime.fromtimestamp(seconds)
 
+    def map_bitmap(value, mapping):
+        """Map a bitmap to the corresponding human readable strings."""
+        return ' '.join([t[1] for t in mapping if value & t[0]])
+
     with open(filename, 'rb') as f:
         f.seek(2 * BLOCKSIZE)
 
@@ -112,11 +116,34 @@ def analyze(filename):
         print 'Number first nonreserved inode: {0:d}'.format(lsb2int(f.read(4)))
         print 'Size of on-disk inode structure: {0:d}'.format(lsb2int(f.read(2)))
         print 'Block group number of this superblock: {0:d}'.format(lsb2int(f.read(2)))
-        print 'Compatibility features bitmap: {0:#X}'.format(lsb2int(f.read(4)))
+        feature_compat = lsb2int(f.read(4))
+        feature_compat_s = map_bitmap(feature_compat, (
+            (0x1, 'dir_prealloc'),
+            (0x2, 'imagic_inodes'),
+            (0x4, 'has_journal'),
+            (0x8, 'ext_attr'),
+            (0x10, 'resize_ino'),
+            (0x20, 'dir_index'),
+        ))
+        print 'Compatible features bitmap: {0:06b} ({1})'.format(feature_compat, feature_compat_s)
 
         # Bytes 96-103
-        print 'Incompatible features bitmap: {0:#X}'.format(lsb2int(f.read(4)))
-        print 'Read-only compatible features bitmap: {0:#X}'.format(lsb2int(f.read(4)))
+        feature_incompat = lsb2int(f.read(4))
+        feature_incompat_s = map_bitmap(feature_incompat, (
+            (0x1, 'compression'),
+            (0x2, 'filetype'),
+            (0x4, 'recover'),
+            (0x8, 'journal_dev'),
+            (0x10, 'meta_bg'),
+        ))
+        print 'Incompatible features bitmap: {0:05b} ({1})'.format(feature_incompat, feature_incompat_s)
+        feature_ro_compat = lsb2int(f.read(4))
+        feature_ro_compat_s = map_bitmap(feature_ro_compat, (
+            (0x1, 'sparse_super'),
+            (0x2, 'large_file'),
+            (0x4, 'btree_dir'),
+        ))
+        print 'Read-only features bitmap: {0:03b} ({1})'.format(feature_ro_compat, feature_ro_compat_s)
 
         # Bytes 104-119
         print '128-bit filesystem identifier: {0}'.format(uuid(hexlify(f.read(16))))
