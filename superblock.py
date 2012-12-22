@@ -44,7 +44,8 @@ def analyze(filename):
         return lsb_string
 
     def lsb2ascii(b_string):
-        """Take a msb hex string and convert it to an ascii string."""
+        """Take a binary string (from ``file.read()``) and convert it to an
+        ascii string."""
         msb_string = hexlify(b_string)
         pairs = (msb_string[x:x + 2] for x in range(0, len(msb_string), 2))
         values = (int(x, 16) for x in pairs)
