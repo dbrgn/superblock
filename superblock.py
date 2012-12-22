@@ -2,8 +2,9 @@
 """
 Analyze superblock in ext2 filesystem.
 
-Usage:
-    superblock.py <filename>
+Author: Danilo Bargen <gezuru@gmail.com>
+License: MIT License
+
 """
 import sys
 import string
