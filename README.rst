@@ -39,23 +39,23 @@ Dump
     Printing superblock (bytes 1024-1535) of file fs.ext2.
 
                          HEX                       ASCII      
-     1:  40000000 00020000 19000000 e4010000  @...............
-     2:  35000000 01000000 00000000 00000000  5...............
-     3:  00200000 00200000 40000000 d20dd550  . ... ..@......P
-     4:  d20dd550 0200ffff 53ef0000 01000000  ...P....S.......
-     5:  df97d350 00000000 00000000 01000000  ...P............
+     1:  40000000 00020000 19000000 e2010000  @...............
+     2:  32000000 01000000 00000000 00000000  2...............
+     3:  00200000 00200000 40000000 82bad550  . ... ..@......P
+     4:  c4bcd550 0200ffff 53ef0100 01000000  ...P....S.......
+     5:  968bd550 00000000 00000000 01000000  ...P............
      6:  00000000 0b000000 80000000 38000000  ............8...
-     7:  02000000 01000000 0557f72d 519b45ff  .........W.-Q.E.
-     8:  b72037db c87ae22d 00000000 00000000  . 7..z.-........
-     9:  00000000 00000000 2f6d6e74 2f646174  ......../mnt/dat
-    10:  612f4472 6f70626f 782f4853 522f4273  a/Dropbox/HSR/Bs
-    11:  7973312f 7531342f 66736d6f 756e7400  ys1/u14/fsmount.
+     7:  02000000 01000000 dc0cb51b 2ab54967  ............*.Ig
+     8:  8e602492 87974d10 65787065 72696d5f  .`$...M.experim_
+     9:  65787432 00000000 2f686f6d 652f6461  ext2..../home/da
+    10:  6e696c6f 2f50726f 6a656374 732f7375  nilo/Projects/su
+    11:  70657262 6c6f636b 2f6d6e74 00000000  perblock/mnt....
     12:  00000000 00000000 00000000 00000000  ................
     13:  00000000 00000000 00000000 00000100  ................
     14:  00000000 00000000 00000000 00000000  ................
-    15:  00000000 00000000 00000000 188c66cf  ..............f.
-    16:  2f744e14 bbac9576 0ded5dde 01000000  /tN....v..].....
-    17:  0c000000 00000000 df97d350 00000000  ...........P....
+    15:  00000000 00000000 00000000 ff27f89c  .............'..
+    16:  b5cb41d1 987de848 6b3e81ba 01000000  ..A..}.Hk>......
+    17:  0c000000 00000000 968bd550 00000000  ...........P....
     18:  00000000 00000000 00000000 00000000  ................
     19:  00000000 00000000 00000000 00000000  ................
     20:  00000000 00000000 00000000 00000000  ................
@@ -82,23 +82,24 @@ Analyze
     Total number of inodes: 64
     Filesystem size in blocks: 512
     Number of reserved blocks: 25
-    Free blocks counter: 484
-    Free inodes counter: 53
+    Free blocks counter: 482
+    Free inodes counter: 50
     Number of first block: 1
-    Block size: 0
+    Block size: 0 (1024 Byte)
     Fragment size: 0
     Number blocks per group: 8192
     Number fragments per group: 8192
     Number inodes per group: 64
-    Time of last mount: 2012-12-22 02:33:06
-    Time of last write: 2012-12-22 02:33:06
+    Number of block groups: 1
+    Time of last mount: 1356184194 (2012-12-22 14:49:54)
+    Time of last write: 2012-12-22 14:59:32
     Mount operations counter: 2
     Number of mount operations before check: 65535
     Magic signature: 0XEF53
-    Status flag: 0
+    Status flag: 1
     Behavior when detecting errors: 1
     Minor revision level: 0
-    Time of last check: 2012-12-20 23:57:35
+    Time of last check: 2012-12-22 11:29:42
     Time between checks: 0
     OS Filesystem created: 0
     Revision level: 1
@@ -107,12 +108,12 @@ Analyze
     Number first nonreserved inode: 11
     Size of on-disk inode structure: 128
     Block group number of this superblock: 0
-    Compatibility features bitmap: 0X38
-    Incompatible features bitmap: 0X2
-    Read-only compatible features bitmap: 0X1
-    128-bit filesystem identifier: 0X2DE27AC8DB3720B7FF459B512DF75705
-    Volume name: 0X0
-    Path of last mount point: 0X746E756F6D73662F3431752F31737973422F5253482F786F62706F72442F617461642F746E6D2F
+    Compatible features bitmap: 111000 (ext_attr resize_ino dir_index)
+    Incompatible features bitmap: 00010 (filetype)
+    Read-only features bitmap: 001 (sparse_super)
+    128-bit filesystem identifier: dc0cb51b-2ab5-4967-8e60-249287974d10
+    Volume name: experim_ext2
+    Path of last mount point: /home/danilo/Projects/superblock/mnt
     Compression: 0X1000000000000
     Number of blocks to preallocate: 0
     Number of blocks to preallocate for directories: 0

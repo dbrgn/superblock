@@ -154,8 +154,8 @@ def analyze(filename):
         # Bytes 136-199
         print 'Path of last mount point: {0}'.format(lsb2ascii(f.read(64)))
 
-        # Bytes 200-207
-        print 'Compression: {0:#X}'.format(lsb2int(f.read(8)))
+        # Bytes 200-205
+        print 'Compression: {0:#X}'.format(lsb2int(f.read(4)))
         print 'Number of blocks to preallocate: {0:d}'.format(lsb2int(f.read(1)))
         print 'Number of blocks to preallocate for directories: {0:d}'.format(lsb2int(f.read(1)))
 
