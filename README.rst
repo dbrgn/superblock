@@ -117,3 +117,9 @@ Analyze
     Compression: 0X0
     Number of blocks to preallocate: 0
     Number of blocks to preallocate for directories: 0
+
+
+Resources
+=========
+
+- `The Second Extended File System <http://www.nongnu.org/ext2-doc/ext2.html>`__
