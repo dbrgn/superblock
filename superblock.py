@@ -69,7 +69,7 @@ def analyze(filename):
 
     def map_bitmap(value, mapping):
         """Map a bitmap to the corresponding human readable strings."""
-        return ' '.join([t[1] for t in mapping if value & t[0]])
+        return ' '.join([t[1] for t in mapping if value & t[0]]) or 'none'
 
     # Process superblock
 
@@ -162,9 +162,44 @@ def analyze(filename):
         print 'Path of last mount point: {0}'.format(lsb2ascii(f.read(64)))
 
         # Bytes 200-205
-        print 'Compression: {0:#X}'.format(lsb2int(f.read(4)))
+        algo_bitmap = lsb2int(f.read(4))
+        algo_bitmap_s = map_bitmap(algo_bitmap, (
+            (0x1, 'lzv1'),
+            (0x2, 'lzrw3a'),
+            (0x4, 'gzip'),
+            (0x8, 'bzip3'),
+            (0x10, 'lzo'),
+        ))
+        print 'Compression Algorithm: {0:05b} ({1})'.format(algo_bitmap, algo_bitmap_s)
         print 'Number of blocks to preallocate: {0:d}'.format(lsb2int(f.read(1)))
         print 'Number of blocks to preallocate for directories: {0:d}'.format(lsb2int(f.read(1)))
+
+        # Bytes 208-235
+        f.read(2) # Padding
+        print 'Journal UUID: {0}'.format(uuid(hexlify(f.read(16))))
+        print 'Journal inode number: {0:d}'.format(lsb2int(f.read(4)))
+        print 'Journal device number: {0:d}'.format(lsb2int(f.read(4)))
+        print 'Journal last orphan: {0:d}'.format(lsb2int(f.read(4)))
+
+        # Bytes 236-255
+        print 'Hash seed: {0:d}'.format(lsb2int(f.read(4))),
+        print '{0:d}'.format(lsb2int(f.read(4))),
+        print '{0:d}'.format(lsb2int(f.read(4))),
+        print '{0:d}'.format(lsb2int(f.read(4)))
+        print 'Hash version: {0:d}'.format(lsb2int(f.read(1)))
+        f.read(3) # Padding
+
+        # Bytes 256-263
+        defm_options = lsb2int(f.read(4))
+        defm_options_s = map_bitmap(defm_options, (
+            (0x1, 'debug'),
+            (0x2, 'bsdgroups'),
+            (0x4, 'xattr_user'),
+            (0x8, 'acl'),
+            (0x10, 'uid16'),
+        ))
+        print 'Default mount options: {0:05b} ({1})'.format(defm_options, defm_options_s)
+        print 'First meta block group ID: {0:d}'.format(lsb2int(f.read(4)))
 
 
 def run():

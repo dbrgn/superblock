@@ -4,14 +4,15 @@
 from setuptools import setup, find_packages
 
 setup(name='superblock',
-      version='0.1.0',
-      description='A script written in Python 2 to analyze the superblock of a ext2 formatted file.',
+      version='0.2.0',
+      description='A script written in Python 2 to analyze the superblock of an ' + \
+                  'ext2/ext3 formatted file.',
       author='Danilo Bargen',
       author_email='gezuru@gmail.com',
       url='https://github.com/dbrgn/superblock',
       py_modules=['superblock'],
       license='MIT',
-      keywords='filesystem superblock ext2 analyze',
+      keywords='filesystem superblock ext2 ext3 extfs analyze',
       long_description=open('README.rst').read(),
       entry_points={
           'console_scripts': [

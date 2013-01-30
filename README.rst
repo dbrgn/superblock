@@ -2,16 +2,17 @@
 superblock
 ##########
 
-A script written in Python 2 to analyze the superblock of a ext2 formatted file.
+A script written in Python 2 to analyze the superblock of an ext2/ext3 formatted
+file.
 
 Such a file can be created as follows::
 
-    $ dd count=1024 if=/dev/zero of=filesystem.ext2
-    $ sudo mkfs.ext2 filesystem.ext2
+    $ dd count=4096 if=/dev/zero of=filesystem.ext3
+    $ sudo mkfs.ext3 filesystem.ext3
 
 It can be mounted with ::
 
-    $ sudo mount -t ext2 -o loop filesystem.ext2 /mnt/mountpoint
+    $ sudo mount -t ext3 -o loop filesystem.ext3 /mnt/mountpoint
 
 
 Install
@@ -132,3 +133,4 @@ Resources
 =========
 
 - `The Second Extended File System <http://www.nongnu.org/ext2-doc/ext2.html>`__
+- `/usr/include/ext2fs/ext2_fs.h`
