@@ -14,6 +14,15 @@ It can be mounted with ::
     $ sudo mount -t ext2 -o loop filesystem.ext2 /mnt/mountpoint
 
 
+Install
+=======
+
+You can either download ``superblock.py`` file and use it directly, or install
+the ``superblock`` command via pip::
+
+    $ sudo pip install superblock
+
+
 Usage
 =====
 
