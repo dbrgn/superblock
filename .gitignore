@@ -1,2 +1,6 @@
 *.pyc
 *.sw?
+/build/
+/dist/
+*.egg-info
+*.ext2

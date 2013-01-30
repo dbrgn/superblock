@@ -167,10 +167,18 @@ def analyze(filename):
         print 'Number of blocks to preallocate for directories: {0:d}'.format(lsb2int(f.read(1)))
 
 
-if __name__ == '__main__':
+def run():
+
+    if '-h' in sys.argv or '--help' in sys.argv:
+        print 'This is a script to analyze the superblock of a ext2 formatted file.\n'
+        print 'Such a file can be created as follows:\n'
+        print '    $ dd count=1024 if=/dev/zero of=filesystem.ext2'
+        print '    $ sudo mkfs.ext2 filesystem.ext2\n'
+        print 'It can be mounted with :\n'
+        print '    $ sudo mount -t ext2 -o loop filesystem.ext2 /mnt/mountpoint\n'
 
     if len(sys.argv) < 3 or sys.argv[1] not in ['dump', 'analyze']:
-        print 'Usage: superblock.py [dump|analyze] <filename>'
+        print 'Usage: superblock.py [-h|--help] [dump|analyze] <filename>'
         sys.exit(1)
 
     action = sys.argv[1]
@@ -183,3 +191,7 @@ if __name__ == '__main__':
     elif action == 'analyze':
         print '\nAnalyzing superblock (bytes 1024-1535) of file %s.\n' % filename
         analyze(filename)
+
+
+if __name__ == '__main__':
+    run()

@@ -2,7 +2,7 @@
 superblock
 ##########
 
-A script written in Python to analyze the superblock of a ext2 formatted file.
+A script written in Python 2 to analyze the superblock of a ext2 formatted file.
 
 Such a file can be created as follows::
 
@@ -19,7 +19,7 @@ Usage
 
 ::
 
-    $ ./superblock.py [dump|analyze] <filename>
+    $ superblock [dump|analyze] <filename>
 
 
 License
