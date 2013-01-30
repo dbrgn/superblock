@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 """
-Analyze superblock in ext2 filesystem.
+Analyze superblock in ext2/ext3 filesystem.
 
 Author: Danilo Bargen <gezuru@gmail.com>
 License: MIT License
@@ -205,12 +205,12 @@ def analyze(filename):
 def run():
 
     if '-h' in sys.argv or '--help' in sys.argv:
-        print 'This is a script to analyze the superblock of a ext2 formatted file.\n'
+        print 'This is a script to analyze the superblock of an ext2/ext3 formatted file.\n'
         print 'Such a file can be created as follows:\n'
-        print '    $ dd count=1024 if=/dev/zero of=filesystem.ext2'
-        print '    $ sudo mkfs.ext2 filesystem.ext2\n'
+        print '    $ dd count=4096 if=/dev/zero of=filesystem.ext3'
+        print '    $ sudo mkfs.ext3 filesystem.ext3\n'
         print 'It can be mounted with :\n'
-        print '    $ sudo mount -t ext2 -o loop filesystem.ext2 /mnt/mountpoint\n'
+        print '    $ sudo mount -t ext3 -o loop filesystem.ext3 /mnt/mountpoint\n'
 
     if len(sys.argv) < 3 or sys.argv[1] not in ['dump', 'analyze']:
         print 'Usage: superblock.py [-h|--help] [dump|analyze] <filename>'

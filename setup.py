@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 
 setup(name='superblock',
-      version='0.2.0',
+      version='0.2.1',
       description='A script written in Python 2 to analyze the superblock of an ' + \
                   'ext2/ext3 formatted file.',
       author='Danilo Bargen',
