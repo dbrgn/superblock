@@ -124,9 +124,17 @@ Analyze
     128-bit filesystem identifier: dc0cb51b-2ab5-4967-8e60-249287974d10
     Volume name: experim_ext2
     Path of last mount point: /home/danilo/Projects/superblock/mnt
-    Compression: 0X0
+    Compression Algorithm: 00000 (none)
     Number of blocks to preallocate: 0
     Number of blocks to preallocate for directories: 0
+    Journal UUID: 00000000-0000-0000-0000-000000000000
+    Journal inode number: 0
+    Journal device number: 0
+    Journal last orphan: 0
+    Hash seed: 2633508863 3510750133 1223196056 3129032299
+    Hash version: 1
+    Default mount options: 01100 (xattr_user acl)
+    First meta block group ID: 0
 
 
 Resources
